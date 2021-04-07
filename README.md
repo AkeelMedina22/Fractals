@@ -12,5 +12,5 @@ The code for Mandelbrot and Julia sets is almost identical, as intended, to show
 
 ### End Result
 
-* ![Screenshot (227)](https://user-images.githubusercontent.com/56905673/113817845-688ba880-9790-11eb-8413-4ac42e5e80b5.png)
+![Screenshot (227)](https://user-images.githubusercontent.com/56905673/113817845-688ba880-9790-11eb-8413-4ac42e5e80b5.png)
 
