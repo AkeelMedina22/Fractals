@@ -1,0 +1,75 @@
+import random
+import math
+import numpy as np
+import matplotlib.pyplot as plt
+
+n = 10
+
+squares = [((0, 0), (1, 0), (0, 1), (1, 1))]
+triangles = [((0, 1), (1, 1), (0.5, 1+(0.5/math.sin(45))))]
+
+data = []
+
+
+def distance(pt1, pt2):
+    return math.sqrt(((pt1[0]-pt2[0])**2)+((pt1[1]-pt2[1])**2))
+
+
+for i in range(n):
+
+    data.append([y for x in squares for y in x])
+
+    squares = list()
+
+    for j in triangles:
+
+        dist1 = distance(j[0], j[2])
+
+        vector1 = [j[2][0] - j[1][0], j[2][1] - j[1][1]]
+        vector2 = [j[2][0] - j[0][0], j[2][1] - j[0][1]]
+
+        move1 = [vector1[0] * dist1, vector1[1] * dist1]
+        move2 = [vector2[0] * dist1, vector2[1] * dist1]
+
+        squares.append(
+            ((j[0], j[2], (j[0][0] + move1[0], j[0][1] + move1[1]), (j[2][0] + move1[0], j[2][1] + move1[1]))))
+
+        squares.append(
+            ((j[1], j[2], (j[1][0] + move2[0], j[1][1] + move2[1]), (j[2][0] + move2[0], j[2][1] + move2[1]))))
+
+    data.append([y for x in triangles for y in x])
+
+    triangles = list()
+
+    for k in squares:
+
+        dist2 = distance(k[2], k[3])/2
+
+        tr = dist2*math.tan(45)
+
+        point1 = [(k[2][0]+k[3][0])/2, (k[2][1]+k[3][1])/2]
+        point2 = [(k[0][0]+k[1][0])/2, (k[0][1]+k[1][1])/2]
+
+        vector = [point1[0] - point2[0], point1[1] - point2[1]]
+
+        move = [vector[0] * tr, vector[1] * tr]
+
+        triangles.append(
+            (k[2], k[3], (point1[0] + move[0], point1[1] + move[1])))
+
+plt.gca().set_aspect('equal')
+
+data = [y for x in data for y in x]
+colors = np.array([i for i in range(len(data))])
+x, y = zip(*data)
+plt.scatter(x, y, s=1, c=colors)
+plt.show()
+
+# Step 1: Draw a square.
+# Step 2: Attach a right triangle to one of its sides along its hypotenuse (here
+# with two equal sides).
+# Step 3: Attach two squares along the free sides of the triangle.
+# Step 4: Attach two right triangles.
+# Step 5: Attach four squares.
+# Step 6: Attach four right triangles.
+# Step 7: Attach eight squares.
