@@ -3,6 +3,15 @@ import math
 import numpy as np
 import matplotlib.pyplot as plt
 
+# This is the Chaos Game implementation of the Sierpinski Triangle. Method found on Wikipedia.
+
+# Step 1: Take three points in a plane to form a triangle, you need not draw it.
+# Step 2: Randomly select any point inside the triangle and consider that your current position.
+# Step 3: Randomly select any one of the three vertex points.
+# Step 4: Move half the distance from your current position to the selected vertex.
+# Step 5: Plot the current position.
+# Step 6: Repeat from step 3.
+
 n = 100000
 
 datax = []
