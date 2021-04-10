@@ -1,7 +1,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-This is an ongoing project of visualizing the fractals in the book Chaos and Fractals. As i read along the book I will add and update new things.
+This is an ongoing project of visualizing the fractals in the book Chaos and Fractals Chapter 2. As i read along the book I will add and update new things.
 
 ### Built With
 
