@@ -3,12 +3,15 @@ import math
 import numpy as np
 import matplotlib.pyplot as plt
 
-n = 10
+n = 8
 
-squares = [((0, 0), (1, 0), (0, 1), (1, 1))]
-triangles = [((0, 1), (1, 1), (0.5, 1+(0.5/math.sin(45))))]
-
-data = []
+squares = [((0, 1), (0, 0), (1, 0), (1, 1), (0, 1))]
+triangles = [((0.5, 1+(0.5)), (0, 1),
+              (1, 1), (0.5, 1+(0.5)))]
+x, y = zip(*squares[0])
+plt.plot(x, y)
+x, y = zip(*triangles[0])
+plt.plot(x, y)
 
 
 def distance(pt1, pt2):
@@ -17,53 +20,63 @@ def distance(pt1, pt2):
 
 for i in range(n):
 
-    data.append([y for x in squares for y in x])
-
     squares = list()
 
     for j in triangles:
 
-        dist1 = distance(j[0], j[2])
+        dist1 = distance(j[1], j[3])
 
-        vector1 = [j[2][0] - j[1][0], j[2][1] - j[1][1]]
-        vector2 = [j[2][0] - j[0][0], j[2][1] - j[0][1]]
+        vector1 = [j[3][0] - j[2][0], j[3][1] - j[2][1]]
+        vector2 = [j[3][0] - j[1][0], j[3][1] - j[1][1]]
 
-        move1 = [vector1[0] * dist1, vector1[1] * dist1]
-        move2 = [vector2[0] * dist1, vector2[1] * dist1]
+        x = [(j[1][0] + vector1[0]), j[1][0], j[3][0],
+             (j[3][0] + vector1[0]), (j[1][0] + vector1[0])]
+        y = [(j[1][1] + vector1[1]), j[1][1], j[3][1],
+             (j[3][1] + vector1[1]),  (j[1][1] + vector1[1])]
 
         squares.append(
-            ((j[0], j[2], (j[0][0] + move1[0], j[0][1] + move1[1]), (j[2][0] + move1[0], j[2][1] + move1[1]))))
+            (((j[1][0] + vector1[0], j[1][1] + vector1[1]), j[1], j[3], (j[3][0] + vector1[0], j[3][1] + vector1[1]), (j[1][0] + vector1[0], j[1][1] + vector1[1]))))
+
+        plt.plot(x, y)
+
+        x = [(j[2][0] + vector2[0]), j[2][0], j[3][0],
+             (j[3][0] + vector2[0]), (j[2][0] + vector2[0])]
+        y = [(j[2][1] + vector2[1]), j[2][1], j[3][1],
+             (j[3][1] + vector2[1]),  (j[2][1] + vector2[1])]
 
         squares.append(
-            ((j[1], j[2], (j[1][0] + move2[0], j[1][1] + move2[1]), (j[2][0] + move2[0], j[2][1] + move2[1]))))
+            (((j[2][0] + vector2[0], j[2][1] + vector2[1]), j[2], j[3], (j[3][0] + vector2[0], j[3][1] + vector2[1]), (j[2][0] + vector2[0], j[2][1] + vector2[1]))))
 
-    data.append([y for x in triangles for y in x])
+        plt.plot(x, y)
 
     triangles = list()
 
     for k in squares:
 
-        dist2 = distance(k[2], k[3])/2
+        dist2 = distance(k[3], k[4])/2
 
         tr = dist2*math.tan(45)
 
-        point1 = [(k[2][0]+k[3][0])/2, (k[2][1]+k[3][1])/2]
-        point2 = [(k[0][0]+k[1][0])/2, (k[0][1]+k[1][1])/2]
+        point1 = [(k[3][0]+k[4][0])/2, (k[3][1]+k[4][1])/2]
+        point2 = [(k[1][0]+k[2][0])/2, (k[1][1]+k[2][1])/2]
 
         vector = [point1[0] - point2[0], point1[1] - point2[1]]
 
-        move = [vector[0] * tr, vector[1] * tr]
+        vector = [vector[0] * tr, vector[1] * tr]
+
+        x = [(point1[0] + vector[0]), k[3][0],
+             k[4][0], (point1[0] + vector[0])]
+        y = [(point1[1] + vector[1]), k[3][1],
+             k[4][1], (point1[1] + vector[1])]
 
         triangles.append(
-            (k[2], k[3], (point1[0] + move[0], point1[1] + move[1])))
+            ((point1[0] + vector[0], point1[1] + vector[1]), k[3], k[4], (point1[0] + vector[0], point1[1] + vector[1])))
+        plt.plot(x, y)
+
 
 plt.gca().set_aspect('equal')
-
-data = [y for x in data for y in x]
-colors = np.array([i for i in range(len(data))])
-x, y = zip(*data)
-plt.scatter(x, y, s=1, c=colors)
 plt.show()
+
 
 # Step 1: Draw a square.
 # Step 2: Attach a right triangle to one of its sides along its hypotenuse (here
