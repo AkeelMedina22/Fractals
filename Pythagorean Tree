@@ -3,7 +3,7 @@ import math
 import numpy as np
 import matplotlib.pyplot as plt
 
-n = 8
+n = 12
 
 squares = [((0, 1), (0, 0), (1, 0), (1, 1), (0, 1))]
 triangles = [((0.5, 1+(0.5)), (0, 1),
@@ -55,27 +55,24 @@ for i in range(n):
 
         dist2 = distance(k[3], k[4])/2
 
-        tr = dist2*math.tan(45)
+        vector1 = [(k[4][0] - k[1][0])/2, (k[4][1] - k[1][1])/2]
+        vector2 = [vector1[0] + k[4][0],
+                   vector1[1] + k[4][1]]
+        vector3 = [vector2[0] + (k[2][0]-k[1][0])/2,
+                   vector2[1] + (k[2][1]-k[1][1])/2]
 
-        point1 = [(k[3][0]+k[4][0])/2, (k[3][1]+k[4][1])/2]
-        point2 = [(k[1][0]+k[2][0])/2, (k[1][1]+k[2][1])/2]
-
-        vector = [point1[0] - point2[0], point1[1] - point2[1]]
-
-        vector = [vector[0] * tr, vector[1] * tr]
-
-        x = [(point1[0] + vector[0]), k[3][0],
-             k[4][0], (point1[0] + vector[0])]
-        y = [(point1[1] + vector[1]), k[3][1],
-             k[4][1], (point1[1] + vector[1])]
+        x = [vector3[0], k[3][0],
+             k[4][0], vector3[0]]
+        y = [vector3[1], k[3][1],
+             k[4][1], vector3[1]]
 
         triangles.append(
-            ((point1[0] + vector[0], point1[1] + vector[1]), k[3], k[4], (point1[0] + vector[0], point1[1] + vector[1])))
+            (vector3, k[3], k[4], vector3))
         plt.plot(x, y)
-
 
 plt.gca().set_aspect('equal')
 plt.show()
+
 
 
 # Step 1: Draw a square.
