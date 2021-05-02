@@ -3,15 +3,20 @@ import math
 import numpy as np
 import matplotlib.pyplot as plt
 
-n = 12
+n = 11
 
-squares = [((0, 1), (0, 0), (1, 0), (1, 1), (0, 1))]
+howbrown = 3
+
+squares = [((0, 1), (0, 0), (1, 0), (1, 1), (0, 1)),
+           ((0, 0), (0, -1), (1, -1), (1, 0), (0, 0))]
 triangles = [((0.5, 1+(0.5)), (0, 1),
               (1, 1), (0.5, 1+(0.5)))]
 x, y = zip(*squares[0])
-plt.plot(x, y)
+plt.plot(x, y, color='#654321')
+x, y = zip(*squares[1])
+plt.plot(x, y, color='#654321')
 x, y = zip(*triangles[0])
-plt.plot(x, y)
+plt.plot(x, y, color='#654321')
 
 
 def distance(pt1, pt2):
@@ -37,7 +42,10 @@ for i in range(n):
         squares.append(
             (((j[1][0] + vector1[0], j[1][1] + vector1[1]), j[1], j[3], (j[3][0] + vector1[0], j[3][1] + vector1[1]), (j[1][0] + vector1[0], j[1][1] + vector1[1]))))
 
-        plt.plot(x, y)
+        if i > howbrown:
+            plt.plot(x, y, color='green')
+        else:
+            plt.plot(x, y, color='#654321')
 
         x = [(j[2][0] + vector2[0]), j[2][0], j[3][0],
              (j[3][0] + vector2[0]), (j[2][0] + vector2[0])]
@@ -47,7 +55,10 @@ for i in range(n):
         squares.append(
             (((j[2][0] + vector2[0], j[2][1] + vector2[1]), j[2], j[3], (j[3][0] + vector2[0], j[3][1] + vector2[1]), (j[2][0] + vector2[0], j[2][1] + vector2[1]))))
 
-        plt.plot(x, y)
+        if i > howbrown:
+            plt.plot(x, y, color='green')
+        else:
+            plt.plot(x, y, color='#654321')
 
     triangles = list()
 
@@ -68,11 +79,14 @@ for i in range(n):
 
         triangles.append(
             (vector3, k[3], k[4], vector3))
-        plt.plot(x, y)
+        if i > howbrown:
+            plt.plot(x, y, color='green')
+        else:
+            plt.plot(x, y, color='#654321')
+
 
 plt.gca().set_aspect('equal')
 plt.show()
-
 
 
 # Step 1: Draw a square.
