@@ -1,7 +1,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-This is an ongoing project of visualizing the fractals in the book Chaos and Fractals Chapter 2. As i read along the book I will add and update new things.
+I am trying to visualize fractals I find cool with matplotlib, no matter how inefficient it may be.
 
 ### Built With
 
