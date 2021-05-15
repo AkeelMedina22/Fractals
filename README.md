@@ -14,8 +14,6 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ### Example Result
 
-![Screenshot (322)](https://user-images.githubusercontent.com/56905673/117834202-65ed0900-b290-11eb-9c67-2db2bfed21aa.png)
+![mandlebrot2](https://user-images.githubusercontent.com/56905673/118356038-c9c34a80-b58c-11eb-91ef-f624eadb4267.png)
 
-![julia2](https://user-images.githubusercontent.com/56905673/117834107-553c9300-b290-11eb-9169-0c38fcf6d6bc.png)
-
-
+![julia2](https://user-images.githubusercontent.com/56905673/118356042-cd56d180-b58c-11eb-88c6-9487aeb5793d.png)
