@@ -1,7 +1,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-I am trying to visualize fractals I find cool with matplotlib, no matter how inefficient it may be.
+I am visualizing fractals I find cool with matplotlib. 
 
 ### Built With
 
