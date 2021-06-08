@@ -58,6 +58,6 @@ for x in range(iterations):
 
     axiom = substr
 
-plt.plot([i[0] for i in coordinates], [i[1] for i in coordinates])
+plt.plot([i[0] for i in coordinates], [i[1] for i in coordinates], c="black")
 plt.axis("equal")
 plt.show()
