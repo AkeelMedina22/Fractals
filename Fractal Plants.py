@@ -1,6 +1,8 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
+# 1
+
 axiom = "F"
 rule = "FF-[-F+F+F]+[+F-F-F]"
 # max 4 iterations. 5 iterations is too slow, the length of the axiom explodes
@@ -68,3 +70,78 @@ for x in range(iterations):
         count += 1
     axiom = substr
 plt.show()
+
+# 2
+
+axiom = "X"
+rule1 = "F+[[X]-X]-F[-FX]+X"
+rule2 = "FF"
+iterations = 5
+count = 0
+coordinates = [(0, 0), (0, 1)]
+
+for x in range(iterations):
+
+    last = len(coordinates)-1
+    coordinates = [(coordinates[last-1]), coordinates[last]]
+
+    substr = ""
+
+    for ch in axiom:
+
+        if ch == "X":
+            substr += rule1
+        elif ch == "F":
+            substr += rule2
+        else:
+            substr += ch
+
+    stack = []
+    pos = []
+
+    for i in substr:
+
+        if i == "+":
+            stack.append(-25)
+        elif i == "-":
+            stack.append(25)
+
+        elif i == "[":
+            plt.plot([i[0] for i in coordinates], [i[1]
+                                                   for i in coordinates], c="green")
+            plt.axis("equal")
+            last = len(coordinates)-1
+            pos.append(
+                ([coordinates[last-1], coordinates[last]], stack.copy()))
+
+        elif i == "]":
+            temp = pos.pop()
+            coordinates = temp[0]
+            stack = temp[1]
+
+        elif (i == "F") and count != 0:
+            angle = 0
+            for j in stack:
+                angle += j
+            stack = []
+
+            theta = np.radians(angle)
+
+            R = np.array(((np.cos(theta), -np.sin(theta)),
+                          (np.sin(theta),  np.cos(theta))))
+
+            last = len(coordinates)-1
+
+            line = np.array([coordinates[last][0]-coordinates[last-1]
+                             [0], coordinates[last][1]-coordinates[last-1][1]])
+
+            v = R.dot(line)
+
+            vector = list(v / (v**2).sum()**0.5)
+
+            coordinates.append(
+                (coordinates[last][0]+vector[0], coordinates[last][1]+vector[1]))
+        count += 1
+    axiom = substr
+plt.show()
+
