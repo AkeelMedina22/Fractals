@@ -1,5 +1,5 @@
 String str = "AB";
-int N = 3000;
+int N = 300;
 
 void setup()
 {
@@ -39,7 +39,6 @@ void setup()
          lambda += log(abs(rn* (1-2*xn))) / N / log(2);
          
        }
-
        
        if (lambda < 0)
        {
@@ -56,6 +55,5 @@ void setup()
 
      }
    }
-   
    updatePixels();
 }
