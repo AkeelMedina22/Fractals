@@ -32,3 +32,9 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
   <img src="https://user-images.githubusercontent.com/56905673/121196125-a63ca880-c889-11eb-9c55-e9f82d57540c.png" width="300" caption="n=4" />
   <img src="https://user-images.githubusercontent.com/56905673/121196150-ad63b680-c889-11eb-97fb-677c7ecbefbf.png" width="300"caption="n=6" /> 
 </p>
+
+### Lyapunov Fractal (using Processing):
+
+<p align="middle">
+  <img src="https://user-images.githubusercontent.com/56905673/125185902-c8d33000-e240-11eb-9ce2-08a6c29288ce.png" width="300"/>
+</p>
