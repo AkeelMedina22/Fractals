@@ -1,7 +1,7 @@
 <!-- ABOUT THE PROJECT -->
 # About The Project
 
-I am visualizing fractals I find cool with matplotlib. 
+Learning more about fractals through the process of visualization.
 
 ## Built With
 
@@ -37,4 +37,5 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 <p align="middle">
   <img src="https://user-images.githubusercontent.com/56905673/125185902-c8d33000-e240-11eb-9ce2-08a6c29288ce.png" width="300"/>
+  <img src="https://user-images.githubusercontent.com/56905673/128345057-d9759318-bbfd-4569-ac9a-802f69ccc95e.jpg" width="300"/>
 </p>
